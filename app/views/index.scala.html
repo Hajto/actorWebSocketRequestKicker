@@ -6,10 +6,10 @@
         <script>
             var exampleSocket = new WebSocket("ws://localhost:9000/socket", "protocolOne");
             exampleSocket.onopen = function (event) {
-               exampleSocket.send("123");
+               exampleSocket.send(prompt("Wpisz id parafii"));
             };
             exampleSocket.onmessage = function (event) {
-               console.log(event.data);
+               document.write(event.data+"<br/>");
             }
         </script>
     </body>
