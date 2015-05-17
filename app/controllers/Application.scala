@@ -19,7 +19,7 @@ object Application extends Controller {
 
   lazy val masterBanger = {
     val actor = Akka.system.actorOf(Props[ManagerActor])
-    Akka.system.scheduler.schedule(0 seconds, 5 seconds, actor, "debug")
+    Akka.system.scheduler.schedule(0 seconds, 20 seconds, actor, "debug")
 
     actor
   }

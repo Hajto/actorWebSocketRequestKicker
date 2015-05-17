@@ -8,6 +8,9 @@
             };
             exampleSocket.onmessage = function (event) {
                 console.log(event.data);
+                var thing = document.createElement("span");
+                thing.innerHTML = "<br/>" + event.data;
+                document.body.appendChild(thing)
             }
         </script>
     </head>

@@ -12,10 +12,12 @@ class MyWebSocketActor(out: ActorRef) extends Actor {
   def receive = {
     case msg: String =>
       toOptInt(msg) match {
-        case Some(v) => Application.masterBanger ! registerPriest(v,out)
-        case None => "Wrong ID"
+        case Some(v) =>
+          Application.masterBanger ! registerPriest(v,out)
+          out ! " Nawiazano polaczenie "
+        case None => out ! "Wrong ID"
       }
-      out ! " Dupa "
+
   }
 
   def toOptInt(s: String): Option[Int] = {
