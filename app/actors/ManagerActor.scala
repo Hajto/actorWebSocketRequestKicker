@@ -17,5 +17,8 @@ class ManagerActor extends Actor {
         case Some(ref) => ref ! message
         case None => sender ! "NOOP"
       }
+    case "debug" => priestMap.foreach{
+      case (index,actorRef) => actorRef ! "Testing"
+    }
   }
 }
