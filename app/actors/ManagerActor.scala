@@ -1,7 +1,6 @@
 package actors
 
 import akka.actor.{ActorRef, Actor}
-import akka.actor.Actor.Receive
 
 case class registerPriest(id: Int,ref: ActorRef)
 case class sendActualMessage(id: Int, message: String)
