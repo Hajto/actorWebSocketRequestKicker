@@ -19,12 +19,13 @@ object Application extends Controller {
 
   lazy val masterBanger = {
     val actor = Akka.system.actorOf(Props[ManagerActor])
-    //Akka.system.scheduler.schedule(0 seconds,10 seconds, actor, "debug")
+    Akka.system.scheduler.schedule(0 seconds, 5 seconds, actor, "debug")
+
     actor
   }
 
   def index = Action {
-    Ok(views.html.index("Your new application is ready."))
+    Ok(views.html.index("Tego tutaj nie powinno byc"))
   }
 
   def socket = WebSocket.acceptWithActor[String, String] { request => out =>
@@ -34,7 +35,7 @@ object Application extends Controller {
   def bangMessage = Action.async { implicit req =>
     Json.fromJson[kickRequest](req.body.asJson.get).map { kick =>
       masterBanger ! sendActualMessage(kick.id,kick.data)
-      Future.successful(Ok("Success"))
+      Future.successful(Ok("Dupa"))
     } getOrElse Future.successful(BadRequest("Wrong json"))
   }
 

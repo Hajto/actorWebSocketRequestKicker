@@ -12,13 +12,15 @@ class ManagerActor extends Actor {
   override def receive: Receive = {
     case registerPriest(id: Int,ref: ActorRef) =>
       priestMap = priestMap + (id -> ref)
+      println(id)
     case sendActualMessage(id: Int, message: Int) =>
       priestMap.get(id) match{
         case Some(ref) => ref ! message
         case None => sender ! "NOOP"
       }
     case "debug" => priestMap.foreach{
-      case (index,actorRef) => actorRef ! "Testing"
+      case (index,actorRef) => actorRef ! "Priests "+priestMap.size+" "+priestMap.keys
     }
+      println("Priests "+priestMap.size+" "+priestMap.keys)
   }
 }
