@@ -35,7 +35,7 @@ object Application extends Controller {
   def bangMessage = Action.async { implicit req =>
     Json.fromJson[kickRequest](req.body.asJson.get).map { kick =>
       masterBanger ! sendActualMessage(kick.id,kick.data)
-      Future.successful(Ok("Dupa"))
+      Future.successful(Ok("{success:true}"))
     } getOrElse Future.successful(BadRequest("Wrong json"))
   }
 
