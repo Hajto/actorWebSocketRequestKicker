@@ -4,7 +4,7 @@
 <html>
     <body>
         <script>
-            var exampleSocket = new WebSocket("ws://cronline-socket-test.herokuapp.com/socket", "protocolOne");
+            var exampleSocket = new WebSocket("wss://cronline-socket-test.herokuapp.com/socket", "protocolOne");
             exampleSocket.onopen = function (event) {
                exampleSocket.send(prompt("Wpisz id parafii"));
             };
