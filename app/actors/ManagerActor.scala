@@ -15,12 +15,12 @@ class ManagerActor extends Actor {
       println(id)
     case sendActualMessage(id: Int, message: Int) =>
       priestMap.get(id) match{
-        case Some(ref) => ref ! message.toString
+        case Some(ref) => ref ! message
         case None => println("Nie ma takiego ksiedza")
       }
     case "debug" => priestMap.foreach{
       case (index,actorRef) => actorRef ! "Priests "+priestMap.size+" "+priestMap.keys
     }
-      println("Priests "+priestMap.size+" "+priestMap.keys)
+    case _ => println("Priests "+priestMap.size+" "+priestMap.keys)
   }
 }
